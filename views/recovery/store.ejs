@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include('../partials/header') %>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row justify-content-center pt-5">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <h2>Recuperar Senha</h2>
+                    <hr /><br />
+
+                    <% if(success){ %>
+                        <div class="alert alert-success">
+                            <%= success %>
+                        </div>
+                        <div class="text-center">
+                            <h3>Agora pode fazer seu login novamente 😀</h3>
+                        </div>
+                    <% } %>
+
+                    <% if(error){ %>
+                        <div class="alert alert-danger">
+                            <%= error %>
+                        </div>
+                    <% } %>
+
+                    <% if(!success) { %>
+
+                    <p>
+                        Digite aqui sua nova senha
+                    </p>
+
+                    <form action="/v1/api/usuarios/senha-recuperada" method="POST">
+                        <input type="hidden" name="token" value="<%= token %>" />
+                        <div class="form-group">
+                            <input 
+                                type="password"
+                                name="password"
+                                class="form-control"
+                                placeholder="Digite sua nova senha"
+                                />
+                        </div>
+                        <button class="btn btn-primary">
+                            Criar Nova Senha
+                        </button>
+                    </form>
+
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
